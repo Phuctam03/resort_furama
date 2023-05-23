@@ -7,5 +7,4 @@ public class Test {
         FuramaController menuFuramaController = new FuramaController();
         menuFuramaController.menuFurama();
     }
-
 }

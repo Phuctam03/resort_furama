@@ -2,6 +2,9 @@ package controller;
 
 import java.util.Scanner;
 
+import serivce.CustomerService;
+import serivce.EmployeeService;
+
 public class FuramaController {
     Scanner sc = new Scanner(System.in);
 
@@ -48,6 +51,7 @@ public class FuramaController {
     }
 
     void employeeManagements() {
+        EmployeeService employeeService = new EmployeeService();
         int luachon = 0;
         boolean check = true;
         while (check) {
@@ -61,10 +65,13 @@ public class FuramaController {
                 luachon = Integer.parseInt(sc.nextLine());
                 switch (luachon) {
                     case 1:
+                        employeeService.list();
                         break;
                     case 2:
+                        employeeService.add();
                         break;
                     case 3:
+                        employeeService.editByid();
                         break;
                     case 4:
                         check = false;
@@ -81,6 +88,7 @@ public class FuramaController {
     }
 
     void customerManagements() {
+        CustomerService customerService = new CustomerService();
         int luachon = 0;
         boolean check = true;
         while (check) {
@@ -94,10 +102,13 @@ public class FuramaController {
                 luachon = Integer.parseInt(sc.nextLine());
                 switch (luachon) {
                     case 1:
+                        customerService.list();
                         break;
                     case 2:
+                        customerService.add();
                         break;
                     case 3:
+                        customerService.editbyid();
                         break;
                     case 4:
                         check = false;

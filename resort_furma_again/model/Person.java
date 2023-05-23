@@ -1,11 +1,10 @@
 package model;
 
-import java.time.LocalDate;
 
 public abstract class Person {
     protected String id;
     protected String namePerson;
-    protected LocalDate birthDay;
+    protected String birthDay;
     protected String gender;
     protected String identityCard;
     protected String phone;
@@ -14,7 +13,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(String id, String namePerson, LocalDate birthDay, String gender, String identityCard, String phone,
+    public Person(String id, String namePerson, String birthDay, String gender, String identityCard, String phone,
             String email) {
         this.id = id;
         this.namePerson = namePerson;
@@ -41,11 +40,11 @@ public abstract class Person {
         this.namePerson = namePerson;
     }
 
-    public LocalDate getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -83,8 +82,9 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return " id=" + id + ", namePerson=" + namePerson + ", birthDay=" + birthDay + ", gender=" + gender
-                + ", identityCard=" + identityCard + ", phone=" + phone + ", email=" + email ;
+        return " id=" + id + ", namePerson=" + namePerson + ", birthDay=" + this.birthDay + ", gender="
+                + gender
+                + ", identityCard=" + identityCard + ", phone=" + phone + ", email=" + email;
     }
 
 }
