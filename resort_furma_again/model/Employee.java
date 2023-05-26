@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 
 public class Employee extends Person {
     private String degree;
@@ -9,7 +10,7 @@ public class Employee extends Person {
     public Employee() {
     }
 
-    public Employee(String id, String namePerson, String birthDay, String gender, String identityCard, String phone,
+    public Employee(String id, String namePerson, Calendar birthDay, String gender, String identityCard, String phone,
             String email, String degree, String position, double salary) {
         super(id, namePerson, birthDay, gender, identityCard, phone, email);
         this.degree = degree;

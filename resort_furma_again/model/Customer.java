@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Customer extends Person {
@@ -9,7 +10,7 @@ public class Customer extends Person {
     public Customer() {
     }
 
-    public Customer(String id, String namePerson, String birthDay, String gender, String identityCard, String phone,
+    public Customer(String id, String namePerson, Calendar birthDay, String gender, String identityCard, String phone,
             String email, String typeGuest, String address) {
         super(id, namePerson, birthDay, gender, identityCard, phone, email);
         this.typeGuest = typeGuest;

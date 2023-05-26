@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import serivce.CustomerService;
 import serivce.EmployeeService;
+import serivce.FacilityService;
 
 public class FuramaController {
     Scanner sc = new Scanner(System.in);
@@ -125,23 +126,27 @@ public class FuramaController {
     }
 
     void facilityManagements() {
+        FacilityService menuFacilityService = new FacilityService();
         int luachon = 0;
         boolean check = true;
         while (check) {
             try {
                 System.out.println("1.Display list facility");
                 System.out.println("2.Add new facility");
-                System.out.println("3.Edit facility");
+                System.out.println("3.Display maintainance facility");
                 System.out.println("4.Return  main menu");
                 System.out.println();
                 System.out.println("Enter the choice(1->4) :");
                 luachon = Integer.parseInt(sc.nextLine());
                 switch (luachon) {
                     case 1:
+                        menuFacilityService.listFacility();
                         break;
                     case 2:
+                        menuFacilityService.addFacility();
                         break;
                     case 3:
+                        menuFacilityService.listFacilityMaintance();
                         break;
                     case 4:
                         check = false;

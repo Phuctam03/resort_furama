@@ -1,9 +1,13 @@
 package util;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.Year;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import model.Customer;
@@ -19,7 +23,10 @@ public class myRegex {
     private static final String ID_FORMAT = "^NV-[0-9]{4}$";
     private static final String ID_CUSTOMER = "^KH-[0-9]{4}$";
     private static final String EMAIL_FORMAT = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
-    public static final String REGEX_FULL_NAME = "[AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+(([\\sAÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+)+)?";
+    private static final String REGEX_FULL_NAME = "[AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+(([\\sAÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+)+)?";
+    public static final String SERVICE_CODE_REGEXVILLA = "SV(VL)-[\\d]{4}";
+    public static final String SERVICE_CODE_REGEXHOUSE = "SV(HO)-[\\d]{4}";
+    public static final String SERVICE_CODE_REGEXROOM = "SV(RO)-[\\d]{4}";
 
     public static boolean isDateRight(String dateStr) {
         if (!dateStr.matches(DATE_FORMAT)) {
@@ -67,12 +74,80 @@ public class myRegex {
         return id.matches(ID_CUSTOMER);
     }
 
-    public static String testDate(String date) {
-        while (!(myRegex.isDateRight(date))) {
-            System.out.println("Invalid date form,please again(dd/MM/yyy) :");
-            date = sc.nextLine();
+    public static boolean isIDFacilityVilla(String id) {
+        return id.matches(SERVICE_CODE_REGEXVILLA);
+    }
+
+    public static boolean isIDFacilityHouse(String id) {
+        return id.matches(SERVICE_CODE_REGEXHOUSE);
+    }
+
+    public static boolean isIDFacilityRoom(String id) {
+        return id.matches(SERVICE_CODE_REGEXROOM);
+    }
+
+    public static String testFacilityVilla(String id) {
+        while (!isIDFacilityVilla(id)) {
+            System.out.println("id formatting (SVVL_YYYY)");
+            id = sc.nextLine();
         }
-        return date;
+        return id;
+    }
+
+    public static String testFacilityHouse(String id) {
+        while (!isIDFacilityHouse(id)) {
+            System.out.println("id formatting (SVHO_YYYY)");
+            id = sc.nextLine();
+        }
+        return id;
+    }
+
+    public static String testFacilityRoom(String id) {
+        while (!isIDFacilityRoom(id)) {
+            System.out.println("id formatting (SVRO_YYYY)");
+            id = sc.nextLine();
+        }
+        return id;
+    }
+
+    public static Double priceHire(Double priceHire) {
+        while (priceHire <= 0) {
+            System.out.println("The price Hire (>30)");
+            priceHire = Double.parseDouble(sc.nextLine());
+        }
+        return priceHire;
+    }
+
+    public static int maxPeople(int numberPeople) {
+        while (numberPeople <= 0 || numberPeople >= 20) {
+            System.out.println("number people  (0 -> 20 )");
+            numberPeople = Integer.parseInt(sc.nextLine());
+        }
+        return numberPeople;
+    }
+
+    public static double maxUseArea(double useArea) {
+        while (useArea < 30) {
+            System.out.println("useArea > 30 :");
+            useArea = Double.parseDouble(sc.nextLine());
+        }
+        return useArea;
+    }
+
+    public static double maxUsePool(double usePool) {
+        while (usePool < 30) {
+            System.out.println("usePool > 30 :");
+            usePool = Double.parseDouble(sc.nextLine());
+        }
+        return usePool;
+    }
+
+    public static int maxFloor(int maxFloor) {
+        while (maxFloor <= 0) {
+            System.out.println("Floor > 0 ");
+            maxFloor = Integer.parseInt(sc.nextLine());
+        }
+        return maxFloor;
     }
 
     public static String testId(String id) throws IOException {
@@ -157,6 +232,75 @@ public class myRegex {
             }
         }
         return false;
+    }
+
+    public static Calendar stringToCalendar(String date) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = null;
+        java.util.Date d;
+        try {
+            d = df.parse(date);
+            c = Calendar.getInstance();
+            c.setTime(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return c;
+    }
+
+    public static boolean isFormatDay(String n) {
+        return n.matches(DATE_FORMAT);
+    }
+
+    public static boolean isEnoughAge(Calendar date) {
+        int validAge = 365 * 18;
+        Calendar now = Calendar.getInstance();
+        int ageCheck = now.get(Calendar.YEAR) - date.get(Calendar.YEAR) - 1;
+        int dayCheck = now.get(Calendar.MONTH) + (12 - date.get(Calendar.MONTH));
+        int check = (ageCheck * 365) + (dayCheck * 30);
+        if (check < validAge) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static boolean isValidDate(String date) {
+        String dateFormat = "dd/MM/yyyy";
+        DateFormat sdf = new SimpleDateFormat(dateFormat);
+        try {
+            sdf.parse(date);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static Calendar enterdateOfBirth() {
+        String date;
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("Enter Date of birth(DD/MM/YYYY) : ");
+            date = sc.nextLine();
+            if (date.isEmpty()) {
+                System.out.println("The input is empty !Please re-enter");
+            } else if (isValidDate(date)) {
+                Calendar c = stringToCalendar(date);
+                if (!isFormatDay(date)) {
+                    System.out.println("Nhap sai dinh dang(DD/MM/YYYY)");
+                } else if (isEnoughAge(c)) {
+                    return c;
+                } else {
+                    System.out.println("The age must greater than 18 years old ! ");
+                }
+            } else {
+                System.out.println("The date of birth you just entered is  invalid !Please re-enter");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

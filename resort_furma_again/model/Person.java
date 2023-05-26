@@ -1,10 +1,11 @@
 package model;
 
+import java.util.Calendar;
 
 public abstract class Person {
     protected String id;
     protected String namePerson;
-    protected String birthDay;
+    protected Calendar birthDay;
     protected String gender;
     protected String identityCard;
     protected String phone;
@@ -13,7 +14,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(String id, String namePerson, String birthDay, String gender, String identityCard, String phone,
+    public Person(String id, String namePerson, Calendar birthDay, String gender, String identityCard, String phone,
             String email) {
         this.id = id;
         this.namePerson = namePerson;
@@ -41,10 +42,11 @@ public abstract class Person {
     }
 
     public String getBirthDay() {
-        return birthDay;
+        return String.format("%d/%d/%d", birthDay.get(Calendar.DATE), birthDay.get(Calendar.MONTH) + 1,
+                birthDay.get(Calendar.YEAR));
     }
 
-    public void setBirthDay(String birthDay) {
+    public void setBirthDay(Calendar birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -82,9 +84,13 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return " id=" + id + ", namePerson=" + namePerson + ", birthDay=" + this.birthDay + ", gender="
+        return " id=" + id + ", namePerson=" + namePerson + ", birthDay="
+                + String.format("%d/%d/%d", birthDay.get(Calendar.DATE), birthDay.get(Calendar.MONTH) + 1,
+                        birthDay.get(Calendar.YEAR))
+                + ", gender="
                 + gender
                 + ", identityCard=" + identityCard + ", phone=" + phone + ", email=" + email;
+
     }
 
 }

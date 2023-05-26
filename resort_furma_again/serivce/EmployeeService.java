@@ -1,6 +1,7 @@
 package serivce;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class EmployeeService implements IEmployee {
     public void add() throws IOException {
         String id;
         String nameEmployee;
-        String birthDay;
+        Calendar birthDay;
         String gender;
         String identityCard;
         String phone;
@@ -38,7 +39,7 @@ public class EmployeeService implements IEmployee {
         System.out.println("Enter the name Employee :");
         nameEmployee = myRegex.testName(sc.nextLine());
         System.out.println("Enter the Birhday employee :");
-        birthDay = myRegex.testDate(sc.nextLine());
+        birthDay = myRegex.enterdateOfBirth();
         System.out.println("Select gender: ");
         gender = EmployeeUtil.selectGender();
         System.out.println("enter indentityCard :");
@@ -84,7 +85,7 @@ public class EmployeeService implements IEmployee {
                             break;
                         case 2:
                             System.out.println("Edit the birthdate :");
-                            e.setBirthDay(myRegex.testDate(sc.nextLine()));
+                            e.setBirthDay(myRegex.enterdateOfBirth());
                             break;
                         case 3:
                             System.out.println("Edit the gender :");

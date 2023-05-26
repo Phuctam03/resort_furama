@@ -24,7 +24,7 @@ public class EmployeeRepository {
     public static void addEmployee(Employee employee) throws IOException {
         employeeList.add(employee);
         EmployeeUtil.writeFileList(employee);
-        System.out.println("Add succffully :" + employee.getNamePerson());
+        System.out.println("Add succefully :" + employee.getNamePerson());
     }
 
     public static void saveupdate() throws IOException {

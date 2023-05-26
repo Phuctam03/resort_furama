@@ -5,7 +5,11 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,7 +69,18 @@ public class CustomerUtil {
             temp = line.split(",");
             String id = temp[0];
             String namePerson = temp[1];
-            String birthDay = temp[2];
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar c = null;
+            java.util.Date d;
+            try {
+                d = df.parse(temp[2]);
+                c = Calendar.getInstance();
+                c.setTime(d);
+            } catch (ParseException b) {
+                b.printStackTrace();
+            }
+            Calendar dateOfBirth = c;
+            Calendar birthDay = dateOfBirth;
             String gender = temp[3];
             String identityCard = temp[4];
             String phone = temp[5];
