@@ -1,0 +1,26 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.9em;
+}
+.section{
+    border: solid;
+}
+
+ header, footer{
+    border: solid 1px;
+    padding: 10px;
+    margin: 5px; 
+    background-color :black;
+    color:  white;    
+}
+article{
+    margin: 5px;
+    padding: 10px;
+} 
+nav ul {
+    padding: 0 ;
+}
+nav ul li {
+    display: inline-block;
+    margin: 5px;
+}
