@@ -17,7 +17,7 @@ body {
   background-color: #f5f5f5;
   border: 1px solid #cdcdcd;
   margin-bottom: 5px;
-  /* position: fixed; */
+  position: fixed;
    width: 100%;
    top: 0;
    left: 0;
@@ -32,6 +32,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 90px;
 }
 .headlink ul {
   padding: 0;
